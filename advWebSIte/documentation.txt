@@ -1,0 +1,68 @@
+Author: Aida
+Project: рекламный сайт для макаронной фабрики "Дамир АА"
+Stack: Bootstrap, Javascript
+adaptive: имеется
+------------------------------------------------------------
+
+website link: https://nurazizaproject.kz
+------------------------------------------------------------
+
+Это одностраничный сайт с блоками:
+- header
+- главная страница с рекламным лозунгом
+- предлагаемая продукция/услуги
+- блок с адаптивной сеткой, внутри которого размещен элемент статистики,
+представляющий собой счетчик, отображающий изменение значения с анимацией
+- каталог продукции
+- галерея (используется библиотека Swiper для создания слайдера.)
+Swiper обеспечивает удобную и гибкую реализацию слайдера с возможностью перелистывания, пагинацией и другими дополнительными функциями
+- контакты: здесь вставлена гугл-карта
+- footer
+
+
+
+>>>>>>>>>>>>>>> А также для данного веб-сайта реализовала на javascript прелоудер.  Весь js код написан js/main.js.
+const preloader = document.querySelector('#preloader');
+  if (preloader) {
+    window.addEventListener('load', () => {
+      preloader.remove();
+    });
+  }
+
+>>>>>>>>>>>>>>> Слайдер с помощью библиотека Swiper на Javascript:
+ new Swiper('.slides-1', {
+    speed: 600,
+    loop: true,
+    autoplay: {
+      delay: 5000,
+      disableOnInteraction: false
+    },
+    slidesPerView: 'auto',
+    pagination: {
+      el: '.swiper-pagination',
+      type: 'bullets',
+      clickable: true
+    },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    }
+  });
+
+  >>>>>>>>>>>>>>> реализации скролла вверх:
+    const scrollTop = document.querySelector('.scroll-top');
+    if (scrollTop) {
+      const togglescrollTop = function() {
+        window.scrollY > 100 ? scrollTop.classList.add('active') : scrollTop.classList.remove('active');
+      }
+      window.addEventListener('load', togglescrollTop);
+      document.addEventListener('scroll', togglescrollTop);
+      scrollTop.addEventListener('click', window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      }));
+    }
+
+
+Все функции обернуты внутри события DOMContentLoaded, чтобы гарантировать, что скрипты выполнятся только после полной загрузки DOM-дерева.
+А именно обеспечивает правильный порядок выполнения скриптов после загрузки страницы и готовности DOM-структуры
